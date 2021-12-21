@@ -47,10 +47,40 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+//for publishing aar
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+}
+
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.implementation
+}
+
+// 制作文档(Javadoc)
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
+            aar(MavenPublication) {
+                groupId = 'planetbeyond.pblib'
+                artifactId = 'pblib'
+                version = '1.0.2'
+                afterEvaluate {
+                    artifact bundleReleaseAar
+                    artifact sourcesJar
+                    artifact javadocJar
+                }
+            }
+            /*release(MavenPublication) {
                 from components.release
 
                 groupId = 'planetbeyond.pblib'
@@ -60,6 +90,14 @@ afterEvaluate {
                 artifact(sourceJar)
                 artifact("$buildDir/outputs/aar/pblib-debug.aar")
             }
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+
+                groupId = 'planetbeyond.pblib'
+                artifactId = 'pblib'
+                version = '1.0.1'
+            }*/
         }
     }
 }
