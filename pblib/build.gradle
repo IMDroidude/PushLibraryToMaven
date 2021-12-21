@@ -55,7 +55,7 @@ afterEvaluate {
 
                 groupId = 'planetbeyond.pblib'
                 artifactId = 'pblib'
-                version = '1.0.0'
+                version = '1.0.1'
 
                 artifact(sourceJar)
                 artifact("$buildDir/outputs/aar/pblib-debug.aar")
