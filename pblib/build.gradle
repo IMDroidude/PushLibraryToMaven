@@ -64,6 +64,8 @@ task javadoc(type: Javadoc) {
     failOnError  false
     source = android.sourceSets.main.java.sourceFiles
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    configurations.implementation.setCanBeResolved(true)
+    configurations.api.setCanBeResolved(true)
     classpath += configurations.implementation
 }
 
@@ -84,7 +86,7 @@ afterEvaluate {
             aar(MavenPublication) {
                 groupId = 'planetbeyond.pblib'
                 artifactId = 'pblib'
-                version = '1.0.4'
+                version = '1.0.5'
                 afterEvaluate {
                     artifact bundleReleaseAar
                     artifact sourcesJar
