@@ -44,6 +44,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+apply from: 'publish_local.gradle'
+
 //for publishing aar
 
 /*task sourceJar(type: Jar) {
@@ -51,6 +53,7 @@ dependencies {
     classifier "sources"
 }*/
 
+/*
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
@@ -69,7 +72,6 @@ task javadoc(type: Javadoc) {
     classpath += configurations.implementation
 }
 
-// 制作文档(Javadoc)
 task javadocJar(type: Jar, dependsOn: javadoc) {
     archiveClassifier.set('javadoc')
     from javadoc.destinationDir
@@ -93,7 +95,7 @@ afterEvaluate {
                     artifact javadocJar
                 }
             }
-            /*release(MavenPublication) {
+            release(MavenPublication) {
                 from components.release
 
                 groupId = 'planetbeyond.pblib'
@@ -110,7 +112,7 @@ afterEvaluate {
                 groupId = 'planetbeyond.pblib'
                 artifactId = 'pblib'
                 version = '1.0.1'
-            }*/
+            }
         }
     }
-}
+}*/
