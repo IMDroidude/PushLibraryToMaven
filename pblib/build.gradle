@@ -4,10 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-task sourceJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier "sources"
-}
+
 
 android {
     compileSdk 31
@@ -49,6 +46,11 @@ dependencies {
 
 //for publishing aar
 
+/*task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}*/
+
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     archiveClassifier.set('sources')
@@ -73,7 +75,7 @@ afterEvaluate {
             aar(MavenPublication) {
                 groupId = 'planetbeyond.pblib'
                 artifactId = 'pblib'
-                version = '1.0.2'
+                version = '1.0.3'
                 afterEvaluate {
                     artifact bundleReleaseAar
                     artifact sourcesJar
