@@ -51,6 +51,10 @@ dependencies {
     classifier "sources"
 }*/
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     archiveClassifier.set('sources')
@@ -69,13 +73,18 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
 afterEvaluate {
     publishing {
         publications {
             aar(MavenPublication) {
                 groupId = 'planetbeyond.pblib'
                 artifactId = 'pblib'
-                version = '1.0.3'
+                version = '1.0.4'
                 afterEvaluate {
                     artifact bundleReleaseAar
                     artifact sourcesJar
