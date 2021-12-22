@@ -2,6 +2,7 @@ package planetboyond.pushlibrarytomaven
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import planetbeyond.pblib.AnotherClassTest
 import planetbeyond.pblib.Toasting
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val toasting = Toasting()
+        val anotherClass = AnotherClassTest()
+        anotherClass.testFun()
 
     }
 }

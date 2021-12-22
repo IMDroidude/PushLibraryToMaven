@@ -1,6 +1,5 @@
 apply plugin: 'maven-publish' ///plugins { id 'maven-publish' }
 
-
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
@@ -36,6 +35,7 @@ afterEvaluate {
             aar(MavenPublication) {
                 groupId = 'planetbeyond.pblib'
                 artifactId = 'pblib'
+                // version will be change when you change main project version
                 version =  android.defaultConfig.versionName ///'1.0.5'
                 afterEvaluate {
                     artifact bundleReleaseAar

@@ -1,0 +1,23 @@
+            Steps to create an AAR (Android Artifact Library)
+
+1. Create a Module and select Android Library
+2. Add id 'maven-publish' besides with id 'com.android.library' in Library build.gradle
+3. Add (paste) publish_local.gradle to the library folder  and update your groupId and artifactId
+4. Add jitpack.yml file and paste below code in it for Java 11
+        jdk:
+          - openjdk11
+        before_install:
+          - ./scripts/prepareJitpackEnvironment.sh
+5. Add maven { url 'https://jitpack.io' } to settings.gradle and for old gradle add it to allprojects
+6. Paste " apply from: 'publish_local.gradle' " at the bottom of library build.gradle
+7. Update versionName from app build.gradle and push code to github
+8. Go to tags in Github and create new Tags with latest version set in app build.gradle
+9. Open jitpack.io and paste your github project and look up for latest Releases
+
+
+
+
+                    Note
+1. If Log file is red in jitpack. See issue by clicking file and read logs to solve issue
+2. Step 4 is skipped if your gradle already set to Java 11
+3.
